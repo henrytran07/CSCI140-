@@ -1,0 +1,43 @@
+Function userInputVerifcation(userInput, number)
+    try 
+        number = convert userInput to integer 
+        if number > 0 
+            print("Valid input")
+            return true
+        else 
+            throw invalid_argument("Invalid input: The number is a negative number.")
+    catch invalid_argument exception 
+        print(e.what())
+        print(" Please enter a positive integer")
+        print(" Please retry entering the number...")
+
+        return false 
+End Function 
+
+Function checkInteger(const number)
+    int even_number = number - 1
+
+    if even_number <= 0 // Handling edge case 
+        return false 
+    
+    while even_number % 2 == 0
+        even_number = even_number / 2
+    
+    return (even_number == 1) // make sure that the power would reduce to 2^0
+
+Function main()
+    string userInput
+    int positive_number; 
+
+    print("\nWelcome to our program that reads a positive integer ")
+    print("representing a potential power of 2 pluses 1." )
+
+    do 
+        print("\nPlease enter a positive integer: ")
+        userInput = get_input()
+    while NOT userInputVerifcation(userInput, positive_number)
+
+    if checkInteger(positive_number)
+        print("\nYes. Your input represents a number of the form 2^n + 1")
+    else 
+        print("\nNo. Your input does not represent a number of the form 2^n + 1")

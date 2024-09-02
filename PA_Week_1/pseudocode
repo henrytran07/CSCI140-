@@ -1,0 +1,60 @@
+
+Function userInputVerification(userInput, total_seconds)
+    try 
+        total_seconds = convert userInput to integer
+        return true // Input is valid 
+    catch invalid_argument exception 
+        print("Invalid input: You should enter an integer for the conversion.")
+        return false // Input is invalid 
+End Function
+
+Function  timeConversion(hours, minutes, total_seconds)
+    conversion_time = total_seconds
+    // Calculate hours 
+    hours = conversion_time / 3600
+    conversion_time -= hours * 3600
+
+    // Calculate minutes 
+    minutes = conversion_time / 60 
+    conversion_time -= minutes * 60 
+
+    // Calculate seconds 
+    seconds = conversion_time 
+    conversion_time -= seconds
+
+    // Verifiy conversion is accurate 
+    if seconds >= 60 
+        print("Needed to check the program. There is something off with the program")
+        exit program 
+End Function 
+
+Function main()
+    string userInput
+    int total_seconds
+
+    print("Welcome to time conversion program.")
+    print("This program is to help you convert from total seconds (from your input)")
+    print(" to the equivalent nuber of hours, number of minutes, and leftover seconds")
+    print("")
+
+    do 
+        print("Please enter the total seconds you want to convert: ")
+        userInput = get_input() //Read user input as a string
+    while NOT userInputVerification(userInput, total_seconds)
+
+    print(total_seconds, ": total_seconds") \\ debugging line 
+
+    int hours, minutes, leftover_seconds
+
+    timeConversion(hours, minutes, leftover_seconds, total_seconds)
+
+    print("The conversion of time is ")
+    print(hours, (hours <= 1 ? " hour": " hours"))
+    print(", ")
+    
+    print(minutes, (minutes <= 1 ? " minute" : " minutes"))
+    print (", ")
+    print(leftover_seconds, (leftover_seconds <= 1 ? " second" : " seconds"))
+
+    return 0
+End Function
