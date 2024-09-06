@@ -1,5 +1,6 @@
 #include <iostream> 
 #include <stdexcept>
+#include <cmath> 
 
 using namespace std; 
 
@@ -32,7 +33,7 @@ int main(){
             test_amount2 --; 
         }
 
-        if (test_amount1 - amount_of_change > test_amount2 - amount_of_change){
+        if (abs(test_amount1 - amount_of_change) > abs(test_amount2 - amount_of_change)){
             amount_of_change = test_amount2; 
         } else {
             amount_of_change = test_amount1; 

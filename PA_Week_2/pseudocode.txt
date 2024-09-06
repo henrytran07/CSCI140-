@@ -1,0 +1,80 @@
+
+Function userHandleExcception(string userInput, int number)
+    try 
+        number = convert userInput into an integer
+        if number >= 0 and number <= 100 
+            print "Valid Input" 
+            return true 
+        else 
+            throw invalid argument("Invalid argument)
+        End if 
+    catch invalid argument 
+        print invalid argument, ": You shoudl enter an integer from 1 to 100. "
+End Function 
+
+Function coinSort (int amount_of_change) 
+    int initial_quarters = 2, initial_dimes = 2, initial_nickels = 2
+    int quarters = 25, dimes = 10, nickels = 5
+    int quarters_for_change = 0, dimes_for_change = 0, nickels_for_change = 0
+
+    int total_change = initial_quarters * quarters + initial_dimes * dimes + initial_nickels * nickels
+
+    if amount_of_change > total_change 
+        return return "Insufficient coins. Your change of " +  to_string(amount_of_change) + " cannot be proccessed."
+    End if 
+    
+    if (amount_of_change >= quarters)
+        quarters_for_change = amount_of_change / quarters
+        amount_of_change -= quarters_for_change * quarters
+    End If
+
+    if (amount_of_change >= dimes)
+        dimes_for_change = amount_of_change / dimes
+        amount_of_change -= dimes_for_change * dimes 
+    End If 
+
+    if (amount_of_change >= nickels)
+        nickels_for_change = amount_of_change / nickels
+        amount_of_change -= nickels_for_change * nickels
+    End If 
+
+     string response = "Your change of 65 cents is given as: \n"
+                  "quarter(s): " + to_string(quarters_for_change) + "\n" +
+                  "dime(s): " + to_string(dimes_for_change) + "\n" +
+                  "nickel(s): " + to_string(nickels_for_change)
+    return response 
+
+Function Main 
+    string userInput
+    int purchase_amount
+
+    do 
+        print "Enter a purchase_amount [0-100]: " 
+        getline(cin, userInput)
+    while NOT userHandleExcception(userInput, purchase_amount)
+
+    int amount_of_change = 100 - purchase_amount
+    int test_amount_1 = amount_of_change
+    int test_amount_2 = amount_of_change
+
+    if (amount_of_change % 5 != 0)
+        print "Your change of ", amount_of_change, " cents is rounded to " 
+
+        while (test_amount_1 %5 != 0)
+            test_amount_1++
+
+        while(test_amount_2 % 5 != 0)
+            test_amount_2++
+
+        if (abs(test_amount_1 - amount_of_change) > abs(test_amount_2 - amount_of_change)) 
+            amount_of_change = test_amount_2
+        else 
+            amount_of_change = test_amount_1
+    
+        print amount_of_change, " cents" 
+    End If 
+    
+    string response = coinSort(amount_of_change)
+    print response 
+
+End Function
