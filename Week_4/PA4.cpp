@@ -5,7 +5,7 @@ using namespace std;
 
 const int MAXIMUM_NUMBER_SIZE = 25; 
 
-bool userInputValidation(const string userInput);
+bool userInputValidation(const string& userInput);
 
 int main()
 {
@@ -38,9 +38,9 @@ int main()
     cout << "Number of digits: " << user_input_size << endl; 
 }
 
-bool userInputValidation(const string userInput) {
-    for (auto index : userInput){
-        if (!isdigit(userInput[index])){
+bool userInputValidation(const string& userInput) {
+    for (char c: userInput){
+        if (!isdigit(c)){
             cout << "Invalid input. Please retry it again with numeric input" << endl; 
             return false; 
         }
