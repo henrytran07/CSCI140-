@@ -1,0 +1,30 @@
+
+#include <iostream> 
+
+using namespace std; 
+
+const int MAXIMUM_NUMBER_SIZE = 25; 
+
+int main()
+{
+    string number[MAXIMUM_NUMBER_SIZE] ={"0"};
+    string user_input; 
+
+    cout << "Etner a large integer up to 25 digits: ";
+    cin >> user_input; 
+
+    size_t user_input_size = user_input.size();
+    for (int index = MAXIMUM_NUMBER_SIZE - 1; index >= 0; index--){
+        for (size_t user_index = user_input_size- 1; user_index >= 0; user_index--){
+            number[index] = user_input[user_index];
+        }
+    }
+
+    cout << "Digits: ";
+    for (int index = 0; index < MAXIMUM_NUMBER_SIZE; index++){
+        cout << number[index] << " ";
+    }
+    cout << endl; 
+
+    cout << "Number of digits: " << user_input_size << endl; 
+}

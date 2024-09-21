@@ -1,4 +1,5 @@
 
+/*I, Henry Tran, verify that the code below is mine. */
 #include <iostream> 
 #include <cmath> 
 using namespace std; 

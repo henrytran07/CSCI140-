@@ -1,3 +1,10 @@
+
+/*
+    This program is to read an integer from 0 to 100, representing as the purchase amount. 
+    It will calculate the amount of change and maximize the coins by using the highest value first. 
+
+    I, Henry Tran, verify that the code below is mine. 
+*/
 #include <iostream> 
 #include <stdexcept>
 #include <cmath> 
@@ -11,6 +18,8 @@ int main(){
     string userInput; 
     int purchase_amount; 
     
+    cout << "Vending Machine Version 1 by Henry Tran\n"
+        << "There are 2 quarters, 2 dimes, and 2 nickels" << endl;
     do {
         cout << "Enter a purchase amount [0-100]: ";
         getline(cin, userInput);
@@ -63,6 +72,8 @@ bool userHandleException(string& userInput, int &number){
 }
 
 string coinSort(int amount_of_change){
+    string change = to_string(amount_of_change);
+
     int initial_quarters = 2, initial_dimes = 2, initial_nickels = 2;
     int quarters = 25, dimes = 10, nickels = 5; 
     int quarters_for_change = 0, dimes_for_change = 0, nickels_for_change = 0; 
@@ -70,25 +81,36 @@ string coinSort(int amount_of_change){
     int total_change = initial_quarters * quarters + initial_dimes * dimes + initial_nickels * nickels; 
 
     if (amount_of_change > total_change){
-        return "Insufficient coins. Your change of " +  to_string(amount_of_change) + " cannot be proccessed.";
+        return "Insufficient coins. Your change of " +  change + " cannot be proccessed.";
     }
 
     if (amount_of_change >= quarters){
         quarters_for_change = amount_of_change / quarters; 
+        if (quarters_for_change > initial_quarters){
+            quarters_for_change = initial_quarters; 
+        }
+
         amount_of_change -= quarters_for_change * quarters; 
     } 
 
     if (amount_of_change >= dimes){
         dimes_for_change = amount_of_change / dimes; 
+        if (dimes_for_change > initial_dimes){
+            dimes_for_change = initial_dimes; 
+        }
+
         amount_of_change -= dimes_for_change * dimes; 
     }
 
     if (amount_of_change >= nickels){
         nickels_for_change = amount_of_change / nickels; 
+        if (nickels_for_change > initial_nickels){
+            nickels_for_change = initial_nickels; 
+        }
         amount_of_change -= nickels_for_change * nickels; 
     }
 
-    string response = "Your change of 65 cents is given as: \n"
+    string response = "Your change of " + change + " cents is given as: \n"
                   "quarter(s): " + to_string(quarters_for_change) + "\n" +
                   "dime(s): " + to_string(dimes_for_change) + "\n" +
                   "nickel(s): " + to_string(nickels_for_change);

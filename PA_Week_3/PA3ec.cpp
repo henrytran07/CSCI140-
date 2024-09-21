@@ -1,3 +1,9 @@
+/*
+    This program is to read an integer from 0 to 100, representing the purchase amount. 
+    It will calculate the amount of change and maximize the coins by using the highest value first. 
+
+    I, Henry Tran, verify that the code below is mine. 
+*/
 #include <iostream> 
 #include <stdexcept>
 #include <cmath> 
@@ -169,16 +175,16 @@ void optimalExtractingCoins(int& valid_transaction, int& amount_of_change, int& 
         return; 
     }
    
-    cout << amount_of_change << ": amount_of_change " << endl; 
-    cout << number_of_quarters << ": number of quarters (I)" << endl; 
-    cout << number_of_dimes << ": number of dimes(I)" << endl; 
-    cout << number_of_nickels << ": number of nickels (i)" << endl; 
-    if ((amount_of_change != 0) && (!csf.already_solved) || amount_of_change > QUARTERS || (!csf.inside_quarters)){
+    // cout << amount_of_change << ": amount_of_change " << endl; google c
+    // cout << number_of_quarters << ": number of quarters (I)" << endl; 
+    // cout << number_of_dimes << ": number of dimes(I)" << endl; 
+    // cout << number_of_nickels << ": number of nickels (i)" << endl; 
+    if ((amount_of_change != 0) && (!csf.already_solved) || (!csf.inside_quarters)){
         if (number_of_quarters == 0){
             amount_of_change += QUARTERS; 
             number_of_quarters++; 
             csf.already_solved = true; 
-        } else {
+        } else if (amount_of_change >= QUARTERS){
             csf.inside_quarters = true; 
             amount_of_change -= QUARTERS; 
             number_of_quarters --; 
@@ -187,13 +193,13 @@ void optimalExtractingCoins(int& valid_transaction, int& amount_of_change, int& 
     }
 
 
-    if ((amount_of_change != 0) && (!csf.already_solved_1) || amount_of_change > DIMES && (!csf.inside_dimes)){
-        cout << "Inside" << endl; 
+    if ((amount_of_change != 0) && (!csf.already_solved_1) || (!csf.inside_dimes)){
+        // cout << "Inside" << endl; 
         if (number_of_dimes == 0){
             amount_of_change += DIMES; 
             number_of_dimes++; 
             csf.already_solved_1 = true; 
-        } else {
+        } else if (amount_of_change >= DIMES) {
             csf.inside_dimes = true; 
             amount_of_change -= DIMES; 
             number_of_dimes --; 
@@ -201,22 +207,22 @@ void optimalExtractingCoins(int& valid_transaction, int& amount_of_change, int& 
         }    
     }
     
-    if (amount_of_change != 0 && !csf.already_solved_2 || (amount_of_change > NICKELS) && (!csf.inside_nickels)){
+    if (amount_of_change != 0 && !csf.already_solved_2 ||  (!csf.inside_nickels)){
         if (number_of_nickels == 0){
             amount_of_change += NICKELS; 
             number_of_nickels++; 
             csf.already_solved_2 = true; 
         }
-        else {
-            cout << "Inside Nickels" << endl; 
+        else if (amount_of_change >= NICKELS){
+            // cout << "Inside Nickels" << endl; 
             amount_of_change -= NICKELS; 
             number_of_nickels --; 
             optimalExtractingCoins(valid_transaction, amount_of_change, number_of_quarters, number_of_dimes, number_of_nickels, valid, csf);
         }    
     }
 
-    cout << amount_of_change << ": amount_of_change (II) " << endl; 
-    cout << number_of_dimes << ": amount_of_dimes (II)" << endl; 
-    cout << number_of_quarters << ": number of quarters (II)" << endl;
-    cout << number_of_nickels << ": amount of nickels (II)" << endl; 
+    // cout << amount_of_change << ": amount_of_change (II) " << endl; 
+    // cout << number_of_dimes << ": amount_of_dimes (II)" << endl; 
+    // cout << number_of_quarters << ": number of quarters (II)" << endl;
+    // cout << number_of_nickels << ": amount of nickels (II)" << endl; 
 }
